@@ -11,7 +11,8 @@ namespace ProjectManagementSystemV4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class DELIVERABLE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,14 +23,22 @@ namespace ProjectManagementSystemV4.Models
         }
     
         public int Deliverable_ID { get; set; }
+        [Display(Name = "Deliverable Deadline")]
         public System.DateTime Deliverable_deadline { get; set; }
+        [Display(Name = "Deliverable End Date")]
         public Nullable<System.DateTime> Deliverable_end_date { get; set; }
+        [Display(Name = "Deliverable Start Date")]
         public System.DateTime Deliverable_start_date { get; set; }
+        [Display(Name = "Deliverable Name")]
         public string Name { get; set; }
         public decimal Budget { get; set; }
+        [Display(Name = "Estimated Man Hours")]
         public int Estimated_manhours { get; set; }
+        [Display(Name = "Man Hours Charged")]
         public int Manhours_charged { get; set; }
+        [Display(Name = "Last Update")]
         public Nullable<System.DateTime> Last_update { get; set; }
+        [Display(Name = "Last Update By")]
         public string Last_update_by { get; set; }
         public int Project_ID { get; set; }
         public string Progress_status { get; set; }

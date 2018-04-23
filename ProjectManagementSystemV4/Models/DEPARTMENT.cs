@@ -11,7 +11,8 @@ namespace ProjectManagementSystemV4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class DEPARTMENT
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,10 +20,13 @@ namespace ProjectManagementSystemV4.Models
         {
             this.PROJECTs = new HashSet<PROJECT>();
         }
-    
+
+        [Display(Name = "Department Name")]
         public string Name { get; set; }
         public int Dept_ID { get; set; }
+        [Display(Name = "Last Update")]
         public Nullable<System.DateTime> Last_update { get; set; }
+        [Display(Name = "Last Update By")]
         public string Last_update_by { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

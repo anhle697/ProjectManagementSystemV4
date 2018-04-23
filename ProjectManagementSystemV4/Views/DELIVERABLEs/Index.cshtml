@@ -12,19 +12,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Deliverable_deadline)
+            @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Deliverable_end_date)
+            @Html.DisplayNameFor(model => model.PROJECT.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Deliverable_start_date)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Deliverable_deadline)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Budget)
+            @Html.DisplayNameFor(model => model.Deliverable_end_date)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Estimated_manhours)
@@ -33,16 +33,16 @@
             @Html.DisplayNameFor(model => model.Manhours_charged)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Last_update)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Last_update_by)
+            @Html.DisplayNameFor(model => model.Budget)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Progress_status)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PROJECT.Name)
+            @Html.DisplayNameFor(model => model.Last_update)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Last_update_by)
         </th>
         <th></th>
     </tr>
@@ -50,19 +50,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Deliverable_deadline)
+            @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Deliverable_end_date)
+            @Html.DisplayFor(modelItem => item.PROJECT.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Deliverable_start_date)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.Deliverable_deadline)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Budget)
+            @Html.DisplayFor(modelItem => item.Deliverable_end_date)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Estimated_manhours)
@@ -71,16 +71,16 @@
             @Html.DisplayFor(modelItem => item.Manhours_charged)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Last_update)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Last_update_by)
+            @Html.DisplayFor(modelItem => item.Budget)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Progress_status)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PROJECT.Name)
+            @Html.DisplayFor(modelItem => item.Last_update)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Last_update_by)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Deliverable_ID }) |

@@ -11,7 +11,8 @@ namespace ProjectManagementSystemV4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CLIENT_PROJECT
     {
         public int Client_project_ID { get; set; }

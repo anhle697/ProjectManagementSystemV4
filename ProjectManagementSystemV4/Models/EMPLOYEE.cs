@@ -11,7 +11,8 @@ namespace ProjectManagementSystemV4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class EMPLOYEE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,13 +24,21 @@ namespace ProjectManagementSystemV4.Models
         }
     
         public int Employee_ID { get; set; }
+        [Display(Name = "Employee First Name")]
         public string F_name { get; set; }
+        [Display(Name = "Employee Type")]
         public string Employee_type { get; set; }
+        [Display(Name = "Hourly Rate")]
         public double Hourly_rate { get; set; }
+        [Display(Name = "Middle Name")]
         public string M_name { get; set; }
+        [Display(Name = "Last Name")]
         public string L_name { get; set; }
+        [Display(Name = "Last Update")]
         public Nullable<System.DateTime> Last_update { get; set; }
+        [Display(Name = "Last Update By")]
         public string Last_update_by { get; set; }
+        [Display(Name = "Email Address")]
         public string Email_address { get; set; }
     
         public virtual EMPLOYEE_DELIVERABLE EMPLOYEE_DELIVERABLE { get; set; }

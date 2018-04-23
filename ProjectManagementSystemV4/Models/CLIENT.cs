@@ -11,7 +11,8 @@ namespace ProjectManagementSystemV4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CLIENT
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,10 +22,15 @@ namespace ProjectManagementSystemV4.Models
         }
     
         public int Client_ID { get; set; }
+        [Display(Name = "Client Name")]
         public string Name { get; set; }
+        [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
+        [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
+        [Display(Name = "Last Update")]
         public Nullable<System.DateTime> Last_Update { get; set; }
+        [Display(Name = "Last Update By")]
         public string Last_Update_By { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
