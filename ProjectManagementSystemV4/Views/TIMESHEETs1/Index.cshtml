@@ -35,6 +35,12 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.EMPLOYEE.F_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DELIVERABLE.Name)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Week)
         </td>
         <td>
@@ -45,12 +51,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Last_update_by)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DELIVERABLE.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMPLOYEE.F_name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Timesheet_ID }) |
