@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProjectManagementSystemV4.Models.TIMESHEET>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Week)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Last_update)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Last_update_by)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DELIVERABLE.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMPLOYEE.F_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Week)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hours)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Last_update)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Last_update_by)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DELIVERABLE.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMPLOYEE.F_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Timesheet_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Timesheet_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Timesheet_ID })
+        </td>
+    </tr>
+}
+
+</table>

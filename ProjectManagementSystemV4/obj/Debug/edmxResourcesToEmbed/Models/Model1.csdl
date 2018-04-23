@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CLIENT">
+    <Key>
+      <PropertyRef Name="Client_ID" />
+    </Key>
+    <Property Name="Client_ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Last_Update" Type="DateTime" Precision="3" />
+    <Property Name="Last_Update_By" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CLIENT_PROJECT" Relationship="Self.FK_CLIENT_PROJECT_CLIENT" FromRole="CLIENT" ToRole="CLIENT_PROJECT" />
+  </EntityType>
+  <EntityType Name="CLIENT_PROJECT">
+    <Key>
+      <PropertyRef Name="Client_project_ID" />
+    </Key>
+    <Property Name="Client_project_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Client_ID" Type="Int32" Nullable="false" />
+    <Property Name="Project_ID" Type="Int32" Nullable="false" />
+    <Property Name="Last_update" Type="DateTime" Precision="3" />
+    <Property Name="Last_update_by" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Payment" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="CLIENT" Relationship="Self.FK_CLIENT_PROJECT_CLIENT" FromRole="CLIENT_PROJECT" ToRole="CLIENT" />
+    <NavigationProperty Name="PROJECT" Relationship="Self.FK_CLIENT_PROJECT_PROJECT" FromRole="CLIENT_PROJECT" ToRole="PROJECT" />
+  </EntityType>
+  <EntityType Name="DELIVERABLE">
+    <Key>
+      <PropertyRef Name="Deliverable_ID" />
+    </Key>
+    <Property Name="Deliverable_ID" Type="Int32" Nullable="false" />
+    <Property Name="Deliverable_deadline" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Deliverable_end_date" Type="DateTime" Precision="0" />
+    <Property Name="Deliverable_start_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Budget" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Estimated_manhours" Type="Int32" Nullable="false" />
+    <Property Name="Manhours_charged" Type="Int32" Nullable="false" />
+    <Property Name="Last_update" Type="DateTime" Precision="3" />
+    <Property Name="Last_update_by" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Project_ID" Type="Int32" Nullable="false" />
+    <Property Name="Progress_status" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PROJECT" Relationship="Self.FK_DELIVERABLES_PROJECT" FromRole="DELIVERABLES" ToRole="PROJECT" />
+    <NavigationProperty Name="EMPLOYEE_DELIVERABLE" Relationship="Self.FK_EMPLOYEE_DELIVERABLE_DELIVERABLES" FromRole="DELIVERABLES" ToRole="EMPLOYEE_DELIVERABLE" />
+    <NavigationProperty Name="TIMESHEETs" Relationship="Self.FK_TIMESHEET_DELIVERABLES" FromRole="DELIVERABLES" ToRole="TIMESHEET" />
+  </EntityType>
+  <EntityType Name="DEPARTMENT">
+    <Key>
+      <PropertyRef Name="Dept_ID" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Dept_ID" Type="Int32" Nullable="false" />
+    <Property Name="Last_update" Type="DateTime" Precision="3" />
+    <Property Name="Last_update_by" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PROJECTs" Relationship="Self.FK_PROJECT_DEPARTMENT" FromRole="DEPARTMENT" ToRole="PROJECT" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE">
+    <Key>
+      <PropertyRef Name="Employee_ID" />
+    </Key>
+    <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+    <Property Name="F_name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Employee_type" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Hourly_rate" Type="Double" Nullable="false" />
+    <Property Name="M_name" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="L_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Last_update" Type="DateTime" Precision="3" />
+    <Property Name="Last_update_by" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Email_address" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="EMPLOYEE_DELIVERABLE" Relationship="Self.FK_EMPLOYEE_DELIVERABLE_EMPLOYEE" FromRole="EMPLOYEE" ToRole="EMPLOYEE_DELIVERABLE" />
+    <NavigationProperty Name="PROJECTs" Relationship="Self.FK_PROJECT_EMPLOYEE" FromRole="EMPLOYEE" ToRole="PROJECT" />
+    <NavigationProperty Name="TIMESHEETs" Relationship="Self.FK_TIMESHEET_EMPLOYEE" FromRole="EMPLOYEE" ToRole="TIMESHEET" />
+    <NavigationProperty Name="User_login" Relationship="Self.FK_User_login_EMPLOYEE" FromRole="EMPLOYEE" ToRole="User_login" />
+    <NavigationProperty Name="AspNetUsers" Relationship="ProjectManagementSystemModel.FK_AspNetUsers_EMPLOYEE" FromRole="EMPLOYEE" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE_DELIVERABLE">
+    <Key>
+      <PropertyRef Name="Employee_deliverable_ID" />
+    </Key>
+    <Property Name="Employee_deliverable_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+    <Property Name="Deliverable_ID" Type="Int32" Nullable="false" />
+    <Property Name="Hours_worked" Type="Double" Nullable="false" />
+    <Property Name="Last_update" Type="DateTime" Precision="3" />
+    <Property Name="Last_update_by" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DELIVERABLE" Relationship="Self.FK_EMPLOYEE_DELIVERABLE_DELIVERABLES" FromRole="EMPLOYEE_DELIVERABLE" ToRole="DELIVERABLES" />
+    <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_EMPLOYEE_DELIVERABLE_EMPLOYEE" FromRole="EMPLOYEE_DELIVERABLE" ToRole="EMPLOYEE" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE_TYPES">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="Int32" Nullable="false" />
+    <Property Name="Employee_Type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PROJECT">
+    <Key>
+      <PropertyRef Name="Project_ID" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Project_ID" Type="Int32" Nullable="false" />
+    <Property Name="USA_region" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Deadline" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Budget" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Start_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="End_date" Type="DateTime" Precision="0" />
+    <Property Name="Progress_status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Last_update" Type="DateTime" Precision="3" />
+    <Property Name="Last_update_by" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Department_ID" Type="Int32" Nullable="false" />
+    <Property Name="Manager_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CLIENT_PROJECT" Relationship="Self.FK_CLIENT_PROJECT_PROJECT" FromRole="PROJECT" ToRole="CLIENT_PROJECT" />
+    <NavigationProperty Name="DELIVERABLES" Relationship="Self.FK_DELIVERABLES_PROJECT" FromRole="PROJECT" ToRole="DELIVERABLES" />
+    <NavigationProperty Name="DEPARTMENT" Relationship="Self.FK_PROJECT_DEPARTMENT" FromRole="PROJECT" ToRole="DEPARTMENT" />
+    <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_PROJECT_EMPLOYEE" FromRole="PROJECT" ToRole="EMPLOYEE" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TIMESHEET">
+    <Key>
+      <PropertyRef Name="Timesheet_ID" />
+    </Key>
+    <Property Name="Timesheet_ID" Type="Int32" Nullable="false" />
+    <Property Name="Week" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Hours" Type="Double" Nullable="false" />
+    <Property Name="Last_update" Type="DateTime" Precision="3" />
+    <Property Name="Last_update_by" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+    <Property Name="Deliverable_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DELIVERABLE" Relationship="Self.FK_TIMESHEET_DELIVERABLES" FromRole="TIMESHEET" ToRole="DELIVERABLES" />
+    <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_TIMESHEET_EMPLOYEE" FromRole="TIMESHEET" ToRole="EMPLOYEE" />
+  </EntityType>
+  <EntityType Name="User_login">
+    <Key>
+      <PropertyRef Name="Employee_ID" />
+    </Key>
+    <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_User_login_EMPLOYEE" FromRole="User_login" ToRole="EMPLOYEE" />
+  </EntityType>
+  <Association Name="FK_CLIENT_PROJECT_CLIENT">
+    <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="1" />
+    <End Role="CLIENT_PROJECT" Type="Self.CLIENT_PROJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENT">
+        <PropertyRef Name="Client_ID" />
+      </Principal>
+      <Dependent Role="CLIENT_PROJECT">
+        <PropertyRef Name="Client_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLIENT_PROJECT_PROJECT">
+    <End Role="PROJECT" Type="Self.PROJECT" Multiplicity="1" />
+    <End Role="CLIENT_PROJECT" Type="Self.CLIENT_PROJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROJECT">
+        <PropertyRef Name="Project_ID" />
+      </Principal>
+      <Dependent Role="CLIENT_PROJECT">
+        <PropertyRef Name="Project_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DELIVERABLES_PROJECT">
+    <End Role="PROJECT" Type="Self.PROJECT" Multiplicity="1" />
+    <End Role="DELIVERABLES" Type="Self.DELIVERABLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROJECT">
+        <PropertyRef Name="Project_ID" />
+      </Principal>
+      <Dependent Role="DELIVERABLES">
+        <PropertyRef Name="Project_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEE_DELIVERABLE_DELIVERABLES">
+    <End Role="DELIVERABLES" Type="Self.DELIVERABLE" Multiplicity="1" />
+    <End Role="EMPLOYEE_DELIVERABLE" Type="Self.EMPLOYEE_DELIVERABLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DELIVERABLES">
+        <PropertyRef Name="Deliverable_ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE_DELIVERABLE">
+        <PropertyRef Name="Deliverable_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIMESHEET_DELIVERABLES">
+    <End Role="DELIVERABLES" Type="Self.DELIVERABLE" Multiplicity="1" />
+    <End Role="TIMESHEET" Type="Self.TIMESHEET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DELIVERABLES">
+        <PropertyRef Name="Deliverable_ID" />
+      </Principal>
+      <Dependent Role="TIMESHEET">
+        <PropertyRef Name="Deliverable_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECT_DEPARTMENT">
+    <End Role="DEPARTMENT" Type="Self.DEPARTMENT" Multiplicity="1" />
+    <End Role="PROJECT" Type="Self.PROJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPARTMENT">
+        <PropertyRef Name="Dept_ID" />
+      </Principal>
+      <Dependent Role="PROJECT">
+        <PropertyRef Name="Department_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEE_DELIVERABLE_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="EMPLOYEE_DELIVERABLE" Type="Self.EMPLOYEE_DELIVERABLE" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="Employee_ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE_DELIVERABLE">
+        <PropertyRef Name="Employee_deliverable_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECT_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="PROJECT" Type="Self.PROJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="Employee_ID" />
+      </Principal>
+      <Dependent Role="PROJECT">
+        <PropertyRef Name="Manager_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIMESHEET_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="TIMESHEET" Type="Self.TIMESHEET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="Employee_ID" />
+      </Principal>
+      <Dependent Role="TIMESHEET">
+        <PropertyRef Name="Employee_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_login_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="User_login" Type="Self.User_login" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="Employee_ID" />
+      </Principal>
+      <Dependent Role="User_login">
+        <PropertyRef Name="Employee_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProjectManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CLIENTs" EntityType="Self.CLIENT" />
+    <EntitySet Name="CLIENT_PROJECT" EntityType="Self.CLIENT_PROJECT" />
+    <EntitySet Name="DELIVERABLES" EntityType="Self.DELIVERABLE" />
+    <EntitySet Name="DEPARTMENTs" EntityType="Self.DEPARTMENT" />
+    <EntitySet Name="EMPLOYEEs" EntityType="Self.EMPLOYEE" />
+    <EntitySet Name="EMPLOYEE_DELIVERABLE" EntityType="Self.EMPLOYEE_DELIVERABLE" />
+    <EntitySet Name="EMPLOYEE_TYPES" EntityType="Self.EMPLOYEE_TYPES" />
+    <EntitySet Name="PROJECTs" EntityType="Self.PROJECT" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TIMESHEETs" EntityType="Self.TIMESHEET" />
+    <EntitySet Name="User_login" EntityType="Self.User_login" />
+    <AssociationSet Name="FK_CLIENT_PROJECT_CLIENT" Association="Self.FK_CLIENT_PROJECT_CLIENT">
+      <End Role="CLIENT" EntitySet="CLIENTs" />
+      <End Role="CLIENT_PROJECT" EntitySet="CLIENT_PROJECT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLIENT_PROJECT_PROJECT" Association="Self.FK_CLIENT_PROJECT_PROJECT">
+      <End Role="PROJECT" EntitySet="PROJECTs" />
+      <End Role="CLIENT_PROJECT" EntitySet="CLIENT_PROJECT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DELIVERABLES_PROJECT" Association="Self.FK_DELIVERABLES_PROJECT">
+      <End Role="PROJECT" EntitySet="PROJECTs" />
+      <End Role="DELIVERABLES" EntitySet="DELIVERABLES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEE_DELIVERABLE_DELIVERABLES" Association="Self.FK_EMPLOYEE_DELIVERABLE_DELIVERABLES">
+      <End Role="DELIVERABLES" EntitySet="DELIVERABLES" />
+      <End Role="EMPLOYEE_DELIVERABLE" EntitySet="EMPLOYEE_DELIVERABLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIMESHEET_DELIVERABLES" Association="Self.FK_TIMESHEET_DELIVERABLES">
+      <End Role="DELIVERABLES" EntitySet="DELIVERABLES" />
+      <End Role="TIMESHEET" EntitySet="TIMESHEETs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECT_DEPARTMENT" Association="Self.FK_PROJECT_DEPARTMENT">
+      <End Role="DEPARTMENT" EntitySet="DEPARTMENTs" />
+      <End Role="PROJECT" EntitySet="PROJECTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEE_DELIVERABLE_EMPLOYEE" Association="Self.FK_EMPLOYEE_DELIVERABLE_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+      <End Role="EMPLOYEE_DELIVERABLE" EntitySet="EMPLOYEE_DELIVERABLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECT_EMPLOYEE" Association="Self.FK_PROJECT_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+      <End Role="PROJECT" EntitySet="PROJECTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIMESHEET_EMPLOYEE" Association="Self.FK_TIMESHEET_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+      <End Role="TIMESHEET" EntitySet="TIMESHEETs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_login_EMPLOYEE" Association="Self.FK_User_login_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+      <End Role="User_login" EntitySet="User_login" />
+    </AssociationSet>
+    <EntitySet Name="C__MigrationHistory" EntityType="ProjectManagementSystemModel.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="ProjectManagementSystemModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="ProjectManagementSystemModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="ProjectManagementSystemModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="ProjectManagementSystemModel.AspNetUser" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="ProjectManagementSystemModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="ProjectManagementSystemModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="ProjectManagementSystemModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUsers_EMPLOYEE" Association="ProjectManagementSystemModel.FK_AspNetUsers_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <EntitySet Name="Report_AllProjects" EntityType="ProjectManagementSystemModel.Report_AllProjects" />
+    <EntitySet Name="database_firewall_rules" EntityType="ProjectManagementSystemModel.database_firewall_rules" />
+  </EntityContainer>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="ProjectManagementSystemModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="ProjectManagementSystemModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="ProjectManagementSystemModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="ProjectManagementSystemModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="ProjectManagementSystemModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="AspNetRoles" Relationship="ProjectManagementSystemModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+    <NavigationProperty Name="EMPLOYEE" Relationship="ProjectManagementSystemModel.FK_AspNetUsers_EMPLOYEE" FromRole="AspNetUser" ToRole="EMPLOYEE" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="ProjectManagementSystemModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ProjectManagementSystemModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="ProjectManagementSystemModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ProjectManagementSystemModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="ProjectManagementSystemModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="ProjectManagementSystemModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_AspNetUsers_EMPLOYEE">
+    <End Type="ProjectManagementSystemModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="1" />
+    <End Type="ProjectManagementSystemModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="Employee_ID" />
+      </Principal>
+      <Dependent Role="AspNetUser">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Report_AllProjects">
+    <Key>
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Project_ID" />
+      <PropertyRef Name="USA_region" />
+      <PropertyRef Name="Deadline" />
+      <PropertyRef Name="Start_date" />
+      <PropertyRef Name="Manager_ID" />
+    </Key>
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Project_ID" Type="Int32" Nullable="false" />
+    <Property Name="USA_region" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Deadline" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Start_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Progress_status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Manager_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="start_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="end_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+</Schema>

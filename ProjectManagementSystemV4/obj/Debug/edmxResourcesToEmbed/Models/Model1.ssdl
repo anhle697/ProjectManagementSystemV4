@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CLIENT">
+    <Key>
+      <PropertyRef Name="Client_ID" />
+    </Key>
+    <Property Name="Client_ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhoneNumber" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Last_Update" Type="datetime" />
+    <Property Name="Last_Update_By" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="CLIENT_PROJECT">
+    <Key>
+      <PropertyRef Name="Client_project_ID" />
+    </Key>
+    <Property Name="Client_project_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Client_ID" Type="int" Nullable="false" />
+    <Property Name="Project_ID" Type="int" Nullable="false" />
+    <Property Name="Last_update" Type="datetime" />
+    <Property Name="Last_update_by" Type="varchar" MaxLength="25" />
+    <Property Name="Payment" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DELIVERABLES">
+    <Key>
+      <PropertyRef Name="Deliverable_ID" />
+    </Key>
+    <Property Name="Deliverable_ID" Type="int" Nullable="false" />
+    <Property Name="Deliverable_deadline" Type="date" Nullable="false" />
+    <Property Name="Deliverable_end_date" Type="date" />
+    <Property Name="Deliverable_start_date" Type="date" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Budget" Type="money" Nullable="false" />
+    <Property Name="Estimated_manhours" Type="int" Nullable="false" />
+    <Property Name="Manhours_charged" Type="int" Nullable="false" />
+    <Property Name="Last_update" Type="datetime" />
+    <Property Name="Last_update_by" Type="varchar" MaxLength="25" />
+    <Property Name="Project_ID" Type="int" Nullable="false" />
+    <Property Name="Progress_status" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="DEPARTMENT">
+    <Key>
+      <PropertyRef Name="Dept_ID" />
+    </Key>
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Dept_ID" Type="int" Nullable="false" />
+    <Property Name="Last_update" Type="datetime" />
+    <Property Name="Last_update_by" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE">
+    <Key>
+      <PropertyRef Name="Employee_ID" />
+    </Key>
+    <Property Name="Employee_ID" Type="int" Nullable="false" />
+    <Property Name="F_name" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Employee_type" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Hourly_rate" Type="float" Nullable="false" />
+    <Property Name="M_name" Type="varchar" MaxLength="5" />
+    <Property Name="L_name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Last_update" Type="datetime" />
+    <Property Name="Last_update_by" Type="varchar" MaxLength="25" />
+    <Property Name="Email_address" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE_DELIVERABLE">
+    <Key>
+      <PropertyRef Name="Employee_deliverable_ID" />
+    </Key>
+    <Property Name="Employee_deliverable_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Employee_ID" Type="int" Nullable="false" />
+    <Property Name="Deliverable_ID" Type="int" Nullable="false" />
+    <Property Name="Hours_worked" Type="float" Nullable="false" />
+    <Property Name="Last_update" Type="datetime" />
+    <Property Name="Last_update_by" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE_TYPES">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="int" Nullable="false" />
+    <Property Name="Employee_Type" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="PROJECT">
+    <Key>
+      <PropertyRef Name="Project_ID" />
+    </Key>
+    <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Project_ID" Type="int" Nullable="false" />
+    <Property Name="USA_region" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Deadline" Type="date" Nullable="false" />
+    <Property Name="Budget" Type="money" Nullable="false" />
+    <Property Name="Start_date" Type="date" Nullable="false" />
+    <Property Name="End_date" Type="date" />
+    <Property Name="Progress_status" Type="varchar" MaxLength="100" />
+    <Property Name="Last_update" Type="datetime" />
+    <Property Name="Last_update_by" Type="varchar" MaxLength="25" />
+    <Property Name="Department_ID" Type="int" Nullable="false" />
+    <Property Name="Manager_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TIMESHEET">
+    <Key>
+      <PropertyRef Name="Timesheet_ID" />
+    </Key>
+    <Property Name="Timesheet_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Employee_ID" Type="int" Nullable="false" />
+    <Property Name="Deliverable_ID" Type="int" Nullable="false" />
+    <Property Name="Week" Type="date" Nullable="false" />
+    <Property Name="Hours" Type="float" Nullable="false" />
+    <Property Name="Last_update" Type="datetime" />
+    <Property Name="Last_update_by" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="User_login">
+    <Key>
+      <PropertyRef Name="Employee_ID" />
+    </Key>
+    <Property Name="Employee_ID" Type="int" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ProjectManagementSystem.dbo.Report_AllProjects' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Report_AllProjects">
+    <Key>
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Project_ID" />
+      <PropertyRef Name="USA_region" />
+      <PropertyRef Name="Deadline" />
+      <PropertyRef Name="Start_date" />
+      <PropertyRef Name="Manager_ID" />
+    </Key>
+    <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Project_ID" Type="int" Nullable="false" />
+    <Property Name="USA_region" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Deadline" Type="date" Nullable="false" />
+    <Property Name="Start_date" Type="date" Nullable="false" />
+    <Property Name="Progress_status" Type="varchar" MaxLength="100" />
+    <Property Name="Manager_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ProjectManagementSystem.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="create_date" Type="datetime" Nullable="false" />
+    <Property Name="modify_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AspNetUsers_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="Employee_ID" />
+      </Principal>
+      <Dependent Role="AspNetUsers">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLIENT_PROJECT_CLIENT">
+    <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="1" />
+    <End Role="CLIENT_PROJECT" Type="Self.CLIENT_PROJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENT">
+        <PropertyRef Name="Client_ID" />
+      </Principal>
+      <Dependent Role="CLIENT_PROJECT">
+        <PropertyRef Name="Client_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLIENT_PROJECT_PROJECT">
+    <End Role="PROJECT" Type="Self.PROJECT" Multiplicity="1" />
+    <End Role="CLIENT_PROJECT" Type="Self.CLIENT_PROJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROJECT">
+        <PropertyRef Name="Project_ID" />
+      </Principal>
+      <Dependent Role="CLIENT_PROJECT">
+        <PropertyRef Name="Project_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DELIVERABLES_PROJECT">
+    <End Role="PROJECT" Type="Self.PROJECT" Multiplicity="1" />
+    <End Role="DELIVERABLES" Type="Self.DELIVERABLES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROJECT">
+        <PropertyRef Name="Project_ID" />
+      </Principal>
+      <Dependent Role="DELIVERABLES">
+        <PropertyRef Name="Project_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEE_DELIVERABLE_DELIVERABLES">
+    <End Role="DELIVERABLES" Type="Self.DELIVERABLES" Multiplicity="1" />
+    <End Role="EMPLOYEE_DELIVERABLE" Type="Self.EMPLOYEE_DELIVERABLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DELIVERABLES">
+        <PropertyRef Name="Deliverable_ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE_DELIVERABLE">
+        <PropertyRef Name="Deliverable_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEE_DELIVERABLE_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="EMPLOYEE_DELIVERABLE" Type="Self.EMPLOYEE_DELIVERABLE" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="Employee_ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE_DELIVERABLE">
+        <PropertyRef Name="Employee_deliverable_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECT_DEPARTMENT">
+    <End Role="DEPARTMENT" Type="Self.DEPARTMENT" Multiplicity="1" />
+    <End Role="PROJECT" Type="Self.PROJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPARTMENT">
+        <PropertyRef Name="Dept_ID" />
+      </Principal>
+      <Dependent Role="PROJECT">
+        <PropertyRef Name="Department_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECT_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="PROJECT" Type="Self.PROJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="Employee_ID" />
+      </Principal>
+      <Dependent Role="PROJECT">
+        <PropertyRef Name="Manager_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIMESHEET_DELIVERABLES">
+    <End Role="DELIVERABLES" Type="Self.DELIVERABLES" Multiplicity="1" />
+    <End Role="TIMESHEET" Type="Self.TIMESHEET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DELIVERABLES">
+        <PropertyRef Name="Deliverable_ID" />
+      </Principal>
+      <Dependent Role="TIMESHEET">
+        <PropertyRef Name="Deliverable_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIMESHEET_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="TIMESHEET" Type="Self.TIMESHEET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="Employee_ID" />
+      </Principal>
+      <Dependent Role="TIMESHEET">
+        <PropertyRef Name="Employee_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_login_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="User_login" Type="Self.User_login" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="Employee_ID" />
+      </Principal>
+      <Dependent Role="User_login">
+        <PropertyRef Name="Employee_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProjectManagementSystemModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLIENT" EntityType="Self.CLIENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLIENT_PROJECT" EntityType="Self.CLIENT_PROJECT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DELIVERABLES" EntityType="Self.DELIVERABLES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DEPARTMENT" EntityType="Self.DEPARTMENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE_DELIVERABLE" EntityType="Self.EMPLOYEE_DELIVERABLE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE_TYPES" EntityType="Self.EMPLOYEE_TYPES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROJECT" EntityType="Self.PROJECT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIMESHEET" EntityType="Self.TIMESHEET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_login" EntityType="Self.User_login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Report_AllProjects" EntityType="Self.Report_AllProjects" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Report_AllProjects].[Name] AS [Name], 
+    [Report_AllProjects].[Project_ID] AS [Project_ID], 
+    [Report_AllProjects].[USA_region] AS [USA_region], 
+    [Report_AllProjects].[Deadline] AS [Deadline], 
+    [Report_AllProjects].[Start_date] AS [Start_date], 
+    [Report_AllProjects].[Progress_status] AS [Progress_status], 
+    [Report_AllProjects].[Manager_ID] AS [Manager_ID]
+    FROM [dbo].[Report_AllProjects] AS [Report_AllProjects]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_AspNetUsers_EMPLOYEE" Association="Self.FK_AspNetUsers_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLIENT_PROJECT_CLIENT" Association="Self.FK_CLIENT_PROJECT_CLIENT">
+      <End Role="CLIENT" EntitySet="CLIENT" />
+      <End Role="CLIENT_PROJECT" EntitySet="CLIENT_PROJECT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLIENT_PROJECT_PROJECT" Association="Self.FK_CLIENT_PROJECT_PROJECT">
+      <End Role="PROJECT" EntitySet="PROJECT" />
+      <End Role="CLIENT_PROJECT" EntitySet="CLIENT_PROJECT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DELIVERABLES_PROJECT" Association="Self.FK_DELIVERABLES_PROJECT">
+      <End Role="PROJECT" EntitySet="PROJECT" />
+      <End Role="DELIVERABLES" EntitySet="DELIVERABLES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEE_DELIVERABLE_DELIVERABLES" Association="Self.FK_EMPLOYEE_DELIVERABLE_DELIVERABLES">
+      <End Role="DELIVERABLES" EntitySet="DELIVERABLES" />
+      <End Role="EMPLOYEE_DELIVERABLE" EntitySet="EMPLOYEE_DELIVERABLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEE_DELIVERABLE_EMPLOYEE" Association="Self.FK_EMPLOYEE_DELIVERABLE_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="EMPLOYEE_DELIVERABLE" EntitySet="EMPLOYEE_DELIVERABLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECT_DEPARTMENT" Association="Self.FK_PROJECT_DEPARTMENT">
+      <End Role="DEPARTMENT" EntitySet="DEPARTMENT" />
+      <End Role="PROJECT" EntitySet="PROJECT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECT_EMPLOYEE" Association="Self.FK_PROJECT_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="PROJECT" EntitySet="PROJECT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIMESHEET_DELIVERABLES" Association="Self.FK_TIMESHEET_DELIVERABLES">
+      <End Role="DELIVERABLES" EntitySet="DELIVERABLES" />
+      <End Role="TIMESHEET" EntitySet="TIMESHEET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIMESHEET_EMPLOYEE" Association="Self.FK_TIMESHEET_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="TIMESHEET" EntitySet="TIMESHEET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_login_EMPLOYEE" Association="Self.FK_User_login_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="User_login" EntitySet="User_login" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

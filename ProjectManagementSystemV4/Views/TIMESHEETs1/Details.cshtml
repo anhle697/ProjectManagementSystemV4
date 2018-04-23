@@ -1,0 +1,66 @@
+﻿@model ProjectManagementSystemV4.Models.TIMESHEET
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TIMESHEET</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Week)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Week)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_update)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_update)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_update_by)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_update_by)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DELIVERABLE.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DELIVERABLE.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMPLOYEE.F_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPLOYEE.F_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Timesheet_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

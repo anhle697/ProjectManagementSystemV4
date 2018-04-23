@@ -1,0 +1,112 @@
+﻿@model ProjectManagementSystemV4.Models.DELIVERABLE
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DELIVERABLE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Deliverable_deadline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deliverable_deadline)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deliverable_end_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deliverable_end_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deliverable_start_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deliverable_start_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Budget)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Budget)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estimated_manhours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estimated_manhours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Manhours_charged)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Manhours_charged)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_update)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_update)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_update_by)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_update_by)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Progress_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Progress_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROJECT.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROJECT.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

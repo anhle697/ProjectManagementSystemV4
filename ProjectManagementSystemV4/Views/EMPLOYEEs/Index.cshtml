@@ -1,0 +1,101 @@
+﻿@model IEnumerable<ProjectManagementSystemV4.Models.EMPLOYEE>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<form id="formSearch" method="post">
+    <div class="row" id="SearchBox">
+        <div class="col-md-1">First Name</div>
+        <div class="col-md-3"><input type="text" id="FirstName" name="FirstName" /></div>
+        <div class="col-md-1">Employee Type</div>
+        <div class="col-md-3"><input type="text" id="EmpType" name="EmpType" /></div>
+    </div>
+    <div class="row" id="SearchBox">
+        <div class="col-lg-1">Last Name</div>
+        <div class="col-md-3"><input type="text" id="LastName" name="LastName" /></div>
+        <div class="col-md-1">Email Address</div>
+        <div class="col-md-3"><input type="text" id="Email" name="Email" /></div>
+        <div class="col-lg-1"><input type="submit" id="submitsearch" value="Search" /></div>
+    </div>
+</form>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.F_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hourly_rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.M_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.L_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Last_update)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Last_update_by)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email_address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMPLOYEE_DELIVERABLE.Last_update_by)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_login.Username)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.F_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hourly_rate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.M_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.L_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Last_update)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Last_update_by)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email_address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMPLOYEE_DELIVERABLE.Last_update_by)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_login.Username)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Employee_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Employee_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Employee_ID })
+        </td>
+    </tr>
+}
+
+</table>

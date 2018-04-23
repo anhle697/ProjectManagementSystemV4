@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ProjectManagementSystemV4.Models.DEPARTMENT>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<form id="formSearch" method="post">
+    <div class="row" id="SearchBox">
+        <div class="col-md-1">Department Name</div>
+        <div class="col-md-2"><input type="text" id="DepartmentName" name="DepartmentName" /></div>
+        <div class="col-md-1"><input type="submit" id="submitsearch" value="Search" /></div>
+    </div>
+</form>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Last_update)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Last_update_by)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Last_update)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Last_update_by)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Dept_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Dept_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Dept_ID })
+        </td>
+    </tr>
+}
+
+</table>

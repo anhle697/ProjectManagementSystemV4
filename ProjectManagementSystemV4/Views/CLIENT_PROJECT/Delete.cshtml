@@ -1,0 +1,64 @@
+﻿@model ProjectManagementSystemV4.Models.CLIENT_PROJECT
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>CLIENT_PROJECT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_update)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_update)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_update_by)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_update_by)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLIENT.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLIENT.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROJECT.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROJECT.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

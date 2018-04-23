@@ -1,0 +1,58 @@
+﻿@model ProjectManagementSystemV4.Models.CLIENT_PROJECT
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CLIENT_PROJECT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_update)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_update)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_update_by)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_update_by)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLIENT.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLIENT.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROJECT.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROJECT.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Client_project_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

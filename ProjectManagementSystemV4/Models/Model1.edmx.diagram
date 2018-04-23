@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dfec4f7c2b684678ba8ffec23bbbbbb2" Name="Diagram1">
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.CLIENT" Width="1.5" PointX="6" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.CLIENT_PROJECT" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.DELIVERABLE" Width="1.5" PointX="8.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.DEPARTMENT" Width="1.5" PointX="3.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.EMPLOYEE" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.EMPLOYEE_DELIVERABLE" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.EMPLOYEE_TYPES" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.PROJECT" Width="1.5" PointX="6" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.sysdiagram" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.TIMESHEET" Width="1.5" PointX="10.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.User_login" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
+        <AssociationConnector Association="ProjectManagementSystemModel.FK_CLIENT_PROJECT_CLIENT" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagementSystemModel.FK_CLIENT_PROJECT_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagementSystemModel.FK_DELIVERABLES_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagementSystemModel.FK_EMPLOYEE_DELIVERABLE_DELIVERABLES" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagementSystemModel.FK_TIMESHEET_DELIVERABLES" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagementSystemModel.FK_PROJECT_DEPARTMENT" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagementSystemModel.FK_EMPLOYEE_DELIVERABLE_EMPLOYEE" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagementSystemModel.FK_PROJECT_EMPLOYEE" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagementSystemModel.FK_TIMESHEET_EMPLOYEE" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagementSystemModel.FK_User_login_EMPLOYEE" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.AspNetRole" Width="1.5" PointX="11.75" PointY="2.5" />
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.AspNetUserClaim" Width="1.5" PointX="16.25" PointY="3.625" />
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.AspNetUserLogin" Width="1.5" PointX="16.25" PointY="1" />
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.AspNetUser" Width="1.5" PointX="14" PointY="1.25" />
+        <AssociationConnector Association="ProjectManagementSystemModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ProjectManagementSystemModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ProjectManagementSystemModel.AspNetUserRoles" />
+        <AssociationConnector Association="ProjectManagementSystemModel.FK_AspNetUsers_EMPLOYEE" />
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.Report_AllProjects" Width="1.5" PointX="3.5" PointY="11.75" />
+        <EntityTypeShape EntityType="ProjectManagementSystemModel.database_firewall_rules" Width="1.5" PointX="5.375" PointY="11.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

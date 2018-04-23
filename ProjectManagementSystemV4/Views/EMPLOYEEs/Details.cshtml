@@ -1,0 +1,98 @@
+﻿@model ProjectManagementSystemV4.Models.EMPLOYEE
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EMPLOYEE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.F_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.F_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hourly_rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hourly_rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.M_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.M_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.L_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.L_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_update)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_update)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_update_by)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_update_by)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email_address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email_address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMPLOYEE_DELIVERABLE.Last_update_by)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPLOYEE_DELIVERABLE.Last_update_by)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_login.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_login.Username)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Employee_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
