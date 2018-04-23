@@ -21,28 +21,54 @@
 
         <ul class="nav navbar-nav">
             <li>@Html.ActionLink("Admin", "Index", "Admin", null, new { @class = "navbar-link" })</li>
-            <li>@Html.ActionLink("Employees", "Index", "EMPLOYEEs", null, new { @class = "dropdown-item" })</li>
-            <li>@Html.ActionLink("Timesheets", "Index", "TIMESHEETs", null, new { @class = "dropdown-item" })</li>
-            <li>@Html.ActionLink("Departments", "Index", "DEPARTMENTs", null, new { @class = "dropdown-item" })</li>
-            <li>@Html.ActionLink("Clients", "Index", "CLIENTs", null, new { @class = "dropdown-item" })</li>
-            <li>@Html.ActionLink("Projects", "Index", "PROJECTs", null, new { @class = "dropdown-item" })</li>
-            <li>@Html.ActionLink("Departments", "Index", "DEPARTMENTs", null, new { @class = "dropdown-item" })</li>
-            <li>@Html.ActionLink("Deliverables", "Index", "DELIVERABLEs", null, new { @class = "dropdown-item" })</li>
-            <li>@Html.ActionLink("Payments", "Index", "CLIENT_PROJECT", null, new { @class = "dropdown-item" })</li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Employee Information
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>@Html.ActionLink("Employees", "Index", "EMPLOYEEs", null, new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Timesheets", "Index", "TIMESHEETs", null, new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Departments", "Index", "DEPARTMENTs", null, new { @class = "dropdown-item" })</li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Project Information
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>@Html.ActionLink("Clients", "Index", "CLIENTs", null, new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Projects", "Index", "PROJECTs", null, new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Deliverables", "Index", "DELIVERABLEs", null, new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Payments", "Index", "CLIENT_PROJECT", null, new { @class = "dropdown-item" })</li>
+                </ul>
+            </li>          
         </ul>
 
     }
     else if (User.IsInRole("Manager"))
     {
         <ul class="nav navbar-nav">
-            <li>@Html.ActionLink("Employees", "Index", "EMPLOYEEs", null, new { @class = "dropdown-item" })</li>
-            <li>@Html.ActionLink("Timesheets", "Index", "TIMESHEETs", null, new { @class = "dropdown-item" })</li>
-            <li>@Html.ActionLink("Departments", "Index", "DEPARTMENTs", null, new { @class = "dropdown-item" })</li>
-            <li>@Html.ActionLink("Clients", "Index", "CLIENTs", null,new { @class = "dropdown-item" })</li>
-            <li>@Html.ActionLink("Projects", "Index", "PROJECTs", null, new { @class = "dropdown-item" })</li>
-            <li>@Html.ActionLink("Departments", "Index", "DEPARTMENTs", null, new { @class = "dropdown-item" })</li>
-            <li>@Html.ActionLink("Deliverables", "Index", "DELIVERABLEs", null, new { @class = "dropdown-item" })</li>
-            <li>@Html.ActionLink("Payments", "Index", "CLIENT_PROJECT", null, new { @class = "dropdown-item" })</li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Employee Information
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>@Html.ActionLink("Employees", "Index", "EMPLOYEEs", null, new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Timesheets", "Index", "TIMESHEETs", null, new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Departments", "Index", "DEPARTMENTs", null, new { @class = "dropdown-item" })</li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Project Information
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>@Html.ActionLink("Clients", "Index", "CLIENTs", null, new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Projects", "Index", "PROJECTs", null, new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Deliverables", "Index", "DELIVERABLEs", null, new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Payments", "Index", "CLIENT_PROJECT", null, new { @class = "dropdown-item" })</li>
+                </ul>
+            </li>          
         </ul>
     }
     else if (User.IsInRole("Employee"))
