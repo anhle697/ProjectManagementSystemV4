@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using ProjectManagementSystemV4.Models;
@@ -15,10 +16,18 @@ namespace ProjectManagementSystemV4.Controllers
         private ProjectManagementSystemEntities db = new ProjectManagementSystemEntities();
 
         // GET: CLIENT_PROJECT
+        [HttpGet]
         public ActionResult Index()
         {
             var cLIENT_PROJECT = db.CLIENT_PROJECT.Include(c => c.CLIENT).Include(c => c.PROJECT);
             return View(cLIENT_PROJECT.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult Index(string ClientName, string ProjectName, CLIENT_PROJECT Cp)
+        {
+            var cLIENT_PROJECT = db.CLIENT_PROJECT.ToList().Where(P => P.CLIENT.Name.StartsWith(ClientName) && P.PROJECT.Name.StartsWith(ProjectName));
+            return View(cLIENT_PROJECT);
         }
 
         // GET: CLIENT_PROJECT/Details/5
@@ -53,6 +62,27 @@ namespace ProjectManagementSystemV4.Controllers
         {
             if (ModelState.IsValid)
             {
+                var clientname = db.CLIENTs.FirstOrDefault(c => c.Client_ID == cLIENT_PROJECT.Client_ID);
+                var projectname = db.PROJECTs.FirstOrDefault(c => c.Project_ID == cLIENT_PROJECT.Project_ID);
+                MailMessage message = new System.Net.Mail.MailMessage();
+                string fromEmail = "umapmsproject@gmail.com";
+                string password = "Staple10";
+                string toEmail = "anhle697@aim.com";
+                message.From = new MailAddress(fromEmail);
+                message.To.Add(toEmail);
+                message.Subject = "A payment has been added for a client.";
+                message.Body = String.Format("A new payment of ${0} has been saved to the client-project association table for client {1} for project named {2}.", cLIENT_PROJECT.Payment, clientname.Name,projectname.Name);
+                message.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+
+                using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtpClient.EnableSsl = true;
+                    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtpClient.UseDefaultCredentials = false;
+                    smtpClient.Credentials = new NetworkCredential(fromEmail, password);
+
+                    smtpClient.Send(message.From.ToString(), message.To.ToString(), message.Subject, message.Body);
+                }
                 db.CLIENT_PROJECT.Add(cLIENT_PROJECT);
                 db.SaveChanges();
                 return RedirectToAction("Index");

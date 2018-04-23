@@ -4,8 +4,10 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using ProjectManagementSystemV4.Models;
 
 namespace ProjectManagementSystemV4.Controllers
@@ -66,6 +68,27 @@ namespace ProjectManagementSystemV4.Controllers
         {
             if (ModelState.IsValid)
             {
+                string userId = User.Identity.GetUserId();
+                var user = (new ApplicationDbContext()).Users.FirstOrDefault(s => s.Id == userId);
+                MailMessage message = new System.Net.Mail.MailMessage();
+                string fromEmail = "umapmsproject@gmail.com";
+                string password = "Staple10";
+                string toEmail = "anhle697@aim.com";
+                message.From = new MailAddress(fromEmail);
+                message.To.Add(toEmail);
+                message.Subject = "A new employee has been created.";
+                message.Body = String.Format("An employeed named {0} {1} has been created in the EMPLOYEE table by manager of username {2}.", eMPLOYEE.F_name, eMPLOYEE.L_name, user.UserName);
+                message.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+
+                using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtpClient.EnableSsl = true;
+                    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtpClient.UseDefaultCredentials = false;
+                    smtpClient.Credentials = new NetworkCredential(fromEmail, password);
+
+                    smtpClient.Send(message.From.ToString(), message.To.ToString(), message.Subject, message.Body);
+                }
                 db.EMPLOYEEs.Add(eMPLOYEE);
                 db.SaveChanges();
                 return RedirectToAction("Index");

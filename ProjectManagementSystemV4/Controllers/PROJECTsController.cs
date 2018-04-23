@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using ProjectManagementSystemV4.Models;
 
 namespace ProjectManagementSystemV4.Controllers
@@ -113,6 +114,27 @@ namespace ProjectManagementSystemV4.Controllers
         {
             if (ModelState.IsValid)
             {
+                string userId = User.Identity.GetUserId();
+                var user = (new ApplicationDbContext()).Users.FirstOrDefault(s => s.Id == userId);
+                MailMessage message = new System.Net.Mail.MailMessage();
+                string fromEmail = "umapmsproject@gmail.com";
+                string password = "Staple10";
+                string toEmail = "anhle697@aim.com";
+                message.From = new MailAddress(fromEmail);
+                message.To.Add(toEmail);
+                message.Subject = "A project has been edited.";
+                message.Body = String.Format("A project called {0} has been edited by manager of username {1}.", pROJECT.Name,user.UserName);
+                message.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+
+                using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtpClient.EnableSsl = true;
+                    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtpClient.UseDefaultCredentials = false;
+                    smtpClient.Credentials = new NetworkCredential(fromEmail, password);
+
+                    smtpClient.Send(message.From.ToString(), message.To.ToString(), message.Subject, message.Body);
+                }
                 db.Entry(pROJECT).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

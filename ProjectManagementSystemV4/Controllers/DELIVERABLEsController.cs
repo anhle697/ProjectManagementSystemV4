@@ -4,8 +4,10 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using ProjectManagementSystemV4.Models;
 
 namespace ProjectManagementSystemV4.Controllers
@@ -53,6 +55,26 @@ namespace ProjectManagementSystemV4.Controllers
         {
             if (ModelState.IsValid)
             {
+                var projectname = db.PROJECTs.FirstOrDefault(t => t.Project_ID == dELIVERABLE.Project_ID);
+                MailMessage message = new System.Net.Mail.MailMessage();
+                string fromEmail = "umapmsproject@gmail.com";
+                string password = "Staple10";
+                string toEmail = "anhle697@aim.com";
+                message.From = new MailAddress(fromEmail);
+                message.To.Add(toEmail);
+                message.Subject = "A new deliverable has been created.";
+                message.Body = String.Format("A deliverable called {0} has been created for project titled {1}.", dELIVERABLE.Name, projectname.Name);
+                message.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+
+                using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtpClient.EnableSsl = true;
+                    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtpClient.UseDefaultCredentials = false;
+                    smtpClient.Credentials = new NetworkCredential(fromEmail, password);
+
+                    smtpClient.Send(message.From.ToString(), message.To.ToString(), message.Subject, message.Body);
+                }
                 db.DELIVERABLES.Add(dELIVERABLE);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -88,6 +110,27 @@ namespace ProjectManagementSystemV4.Controllers
         {
             if (ModelState.IsValid)
             {
+                string userId = User.Identity.GetUserId();
+                var user = (new ApplicationDbContext()).Users.FirstOrDefault(s => s.Id == userId);
+                MailMessage message = new System.Net.Mail.MailMessage();
+                string fromEmail = "umapmsproject@gmail.com";
+                string password = "Staple10";
+                string toEmail = "anhle697@aim.com";
+                message.From = new MailAddress(fromEmail);
+                message.To.Add(toEmail);
+                message.Subject = "A deliverable has been edited.";
+                message.Body = String.Format("A deliverable called {0} has been edited by manager of username {1}.", dELIVERABLE.Name, user.UserName);
+                message.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+
+                using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtpClient.EnableSsl = true;
+                    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtpClient.UseDefaultCredentials = false;
+                    smtpClient.Credentials = new NetworkCredential(fromEmail, password);
+
+                    smtpClient.Send(message.From.ToString(), message.To.ToString(), message.Subject, message.Body);
+                }
                 db.Entry(dELIVERABLE).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
