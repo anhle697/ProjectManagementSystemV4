@@ -186,14 +186,6 @@
           <Property Name="Last_update" Type="datetime" />
           <Property Name="Last_update_by" Type="varchar" MaxLength="25" />
         </EntityType>
-        <EntityType Name="User_login">
-          <Key>
-            <PropertyRef Name="Employee_ID" />
-          </Key>
-          <Property Name="Employee_ID" Type="int" Nullable="false" />
-          <Property Name="Username" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="25" Nullable="false" />
-        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ProjectManagementSystem.dbo.Report_AllProjects' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Report_AllProjects">
@@ -407,18 +399,7 @@ warning 6002: The table/view 'ProjectManagementSystem.sys.database_firewall_rule
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_login_EMPLOYEE">
-          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
-          <End Role="User_login" Type="Self.User_login" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="EMPLOYEE">
-              <PropertyRef Name="Employee_ID" />
-            </Principal>
-            <Dependent Role="User_login">
-              <PropertyRef Name="Employee_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        
         <EntityContainer Name="ProjectManagementSystemModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -436,7 +417,6 @@ warning 6002: The table/view 'ProjectManagementSystem.sys.database_firewall_rule
           <EntitySet Name="PROJECT" EntityType="Self.PROJECT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIMESHEET" EntityType="Self.TIMESHEET" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User_login" EntityType="Self.User_login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Report_AllProjects" EntityType="Self.Report_AllProjects" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Report_AllProjects].[Name] AS [Name], 
@@ -514,10 +494,7 @@ warning 6002: The table/view 'ProjectManagementSystem.sys.database_firewall_rule
             <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
             <End Role="TIMESHEET" EntitySet="TIMESHEET" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_login_EMPLOYEE" Association="Self.FK_User_login_EMPLOYEE">
-            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
-            <End Role="User_login" EntitySet="User_login" />
-          </AssociationSet>
+          
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -594,7 +571,6 @@ warning 6002: The table/view 'ProjectManagementSystem.sys.database_firewall_rule
           <NavigationProperty Name="EMPLOYEE_DELIVERABLE" Relationship="Self.FK_EMPLOYEE_DELIVERABLE_EMPLOYEE" FromRole="EMPLOYEE" ToRole="EMPLOYEE_DELIVERABLE" />
           <NavigationProperty Name="PROJECTs" Relationship="Self.FK_PROJECT_EMPLOYEE" FromRole="EMPLOYEE" ToRole="PROJECT" />
           <NavigationProperty Name="TIMESHEETs" Relationship="Self.FK_TIMESHEET_EMPLOYEE" FromRole="EMPLOYEE" ToRole="TIMESHEET" />
-          <NavigationProperty Name="User_login" Relationship="Self.FK_User_login_EMPLOYEE" FromRole="EMPLOYEE" ToRole="User_login" />
           <NavigationProperty Name="AspNetUsers" Relationship="ProjectManagementSystemModel.FK_AspNetUsers_EMPLOYEE" FromRole="EMPLOYEE" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="EMPLOYEE_DELIVERABLE">
@@ -662,15 +638,7 @@ warning 6002: The table/view 'ProjectManagementSystem.sys.database_firewall_rule
           <NavigationProperty Name="DELIVERABLE" Relationship="Self.FK_TIMESHEET_DELIVERABLES" FromRole="TIMESHEET" ToRole="DELIVERABLES" />
           <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_TIMESHEET_EMPLOYEE" FromRole="TIMESHEET" ToRole="EMPLOYEE" />
         </EntityType>
-        <EntityType Name="User_login">
-          <Key>
-            <PropertyRef Name="Employee_ID" />
-          </Key>
-          <Property Name="Employee_ID" Type="Int32" Nullable="false" />
-          <Property Name="Username" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_User_login_EMPLOYEE" FromRole="User_login" ToRole="EMPLOYEE" />
-        </EntityType>
+       
         <Association Name="FK_CLIENT_PROJECT_CLIENT">
           <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="1" />
           <End Role="CLIENT_PROJECT" Type="Self.CLIENT_PROJECT" Multiplicity="*" />
@@ -779,18 +747,7 @@ warning 6002: The table/view 'ProjectManagementSystem.sys.database_firewall_rule
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_login_EMPLOYEE">
-          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
-          <End Role="User_login" Type="Self.User_login" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="EMPLOYEE">
-              <PropertyRef Name="Employee_ID" />
-            </Principal>
-            <Dependent Role="User_login">
-              <PropertyRef Name="Employee_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+      
         <EntityContainer Name="ProjectManagementSystemEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CLIENTs" EntityType="Self.CLIENT" />
           <EntitySet Name="CLIENT_PROJECT" EntityType="Self.CLIENT_PROJECT" />
@@ -802,7 +759,6 @@ warning 6002: The table/view 'ProjectManagementSystem.sys.database_firewall_rule
           <EntitySet Name="PROJECTs" EntityType="Self.PROJECT" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TIMESHEETs" EntityType="Self.TIMESHEET" />
-          <EntitySet Name="User_login" EntityType="Self.User_login" />
           <AssociationSet Name="FK_CLIENT_PROJECT_CLIENT" Association="Self.FK_CLIENT_PROJECT_CLIENT">
             <End Role="CLIENT" EntitySet="CLIENTs" />
             <End Role="CLIENT_PROJECT" EntitySet="CLIENT_PROJECT" />
@@ -839,10 +795,7 @@ warning 6002: The table/view 'ProjectManagementSystem.sys.database_firewall_rule
             <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
             <End Role="TIMESHEET" EntitySet="TIMESHEETs" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_login_EMPLOYEE" Association="Self.FK_User_login_EMPLOYEE">
-            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
-            <End Role="User_login" EntitySet="User_login" />
-          </AssociationSet>
+          
           <EntitySet Name="C__MigrationHistory" EntityType="ProjectManagementSystemModel.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="ProjectManagementSystemModel.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="ProjectManagementSystemModel.AspNetUserClaim" />
@@ -1140,15 +1093,7 @@ warning 6002: The table/view 'ProjectManagementSystem.sys.database_firewall_rule
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="User_login">
-            <EntityTypeMapping TypeName="ProjectManagementSystemModel.User_login">
-              <MappingFragment StoreEntitySet="User_login">
-                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="ProjectManagementSystemModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">

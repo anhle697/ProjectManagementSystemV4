@@ -130,15 +130,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="User_login">
-      <EntityTypeMapping TypeName="ProjectManagementSystemModel.User_login">
-        <MappingFragment StoreEntitySet="User_login">
-          <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="C__MigrationHistory">
       <EntityTypeMapping TypeName="ProjectManagementSystemModel.C__MigrationHistory">
         <MappingFragment StoreEntitySet="__MigrationHistory">
