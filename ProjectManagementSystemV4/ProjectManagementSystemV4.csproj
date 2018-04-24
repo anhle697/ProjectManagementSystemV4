@@ -188,11 +188,13 @@
     <Compile Include="Controllers\CLIENTsController.cs" />
     <Compile Include="Controllers\CLIENT_PROJECTController.cs" />
     <Compile Include="Controllers\DELIVERABLEsController.cs" />
+    <Compile Include="Controllers\DELIVERABLEVIEWsController.cs" />
     <Compile Include="Controllers\DEPARTMENTsController.cs" />
     <Compile Include="Controllers\EMPLOYEEsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PROJECTsController.cs" />
+    <Compile Include="Controllers\PROJECTVIEWsController.cs" />
     <Compile Include="Controllers\TIMESHEETs1Controller.cs" />
     <Compile Include="Controllers\TIMESHEETsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -281,8 +283,6 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Views\DELIVERABLEVIEWsController.cs" />
-    <Compile Include="Views\PROJECTVIEWsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -344,24 +344,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
@@ -405,12 +391,7 @@
     <Content Include="Views\TIMESHEETs1\Details.cshtml" />
     <Content Include="Views\TIMESHEETs1\Edit.cshtml" />
     <Content Include="Views\TIMESHEETs1\Index.cshtml" />
-    <Content Include="Views\PROJECTVIEWs\Details.cshtml" />
     <Content Include="Views\PROJECTVIEWs\Index.cshtml" />
-    <Content Include="Views\DELIVERABLEVIEWs\Create.cshtml" />
-    <Content Include="Views\DELIVERABLEVIEWs\Delete.cshtml" />
-    <Content Include="Views\DELIVERABLEVIEWs\Details.cshtml" />
-    <Content Include="Views\DELIVERABLEVIEWs\Edit.cshtml" />
     <Content Include="Views\DELIVERABLEVIEWs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
